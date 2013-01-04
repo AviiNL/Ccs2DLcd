@@ -1,0 +1,9 @@
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\TestCase.exe
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\TestCase.pdb
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\obj\x86\Debug\TestCase.exe
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\obj\x86\Debug\TestCase.pdb
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\obj\x86\Debug\TestCase.csprojResolveAssemblyReference.cache
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\CsLglcd.dll
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\NAudio.dll
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\Ccs2DLcd.dll
+C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\Ccs2DLcd.pdb
