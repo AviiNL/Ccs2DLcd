@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CC2DLcd", "CC2DLcd\CC2DLcd.csproj", "{963C541A-F967-48DE-AE22-24D79ADE5F27}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ccs2DLcd", "Ccs2DLcd\Ccs2DLcd.csproj", "{963C541A-F967-48DE-AE22-24D79ADE5F27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCase", "TestCase\TestCase.csproj", "{F80E9E16-4604-4733-AF94-D3C9E4EB7277}"
 EndProject
