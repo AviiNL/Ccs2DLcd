@@ -29,6 +29,11 @@ namespace Ccs2DLcd
       Clear(Color.DarkSlateBlue);
     }
 
+    public void Draw(Bitmap sprite, float x, float y)
+    {
+      g.DrawImage(sprite, x, y);
+    }
+
     public void Draw(Sprite sprite)
     {
         g.DrawImage(sprite.getBitmap(), sprite.Location.ToPoint());
