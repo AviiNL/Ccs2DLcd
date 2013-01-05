@@ -13,26 +13,10 @@ namespace Ccs2DLcd
     public Rectangle Rectangle;// { get; protected set; }
     private Bitmap bitmap;
 
-    public Sprite(Bitmap bitmap) // TODO: Optimize, do not load same file twice, put them in a resource buffer and re-use when required.
+    public Sprite(Bitmap bitmap)
     {
-      this.bitmap = new Bitmap(bitmap);
+      this.bitmap = bitmap;
       
-      Location = new Vector2(0, 0);
-      Size = new System.Drawing.Size(bitmap.Width, bitmap.Height);
-      Rectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-    }
-
-    public Sprite(string file) // TODO: Optimize, do not load same file twice, put them in a resource buffer and re-use when required.
-    {
-      if (System.IO.File.Exists(file))
-      {
-        Log.Write("Loading sprite: [" + System.IO.Path.GetFileName(file) + "]");
-        this.bitmap = new Bitmap(file);
-        Log.Done();
-      }
-      else
-        throw new System.IO.FileNotFoundException("File not found: " + file);
-
       Location = new Vector2(0, 0);
       Size = new System.Drawing.Size(bitmap.Width, bitmap.Height);
       Rectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);

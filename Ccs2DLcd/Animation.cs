@@ -26,7 +26,7 @@ namespace Ccs2DLcd
     
 
     public Animation(string file, int cols, int rows):
-      base(file)
+      base(new System.Drawing.Bitmap(file))
     {
       this.cols = cols;
       this.rows = rows;
@@ -52,6 +52,7 @@ namespace Ccs2DLcd
 
       Size = new System.Drawing.Size(frameWidth, frameHeight);
       Rectangle = new System.Drawing.Rectangle(0, 0, frameWidth, frameHeight);
+      Update(1, 1, 1);
     }
 
     /// <summary>
