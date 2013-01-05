@@ -48,7 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CC2DLcd\CC2DLcd.csproj">
+    <ProjectReference Include="..\Ccs2DLcd\Ccs2DLcd.csproj">
       <Project>{963C541A-F967-48DE-AE22-24D79ADE5F27}</Project>
       <Name>CC2DLcd</Name>
     </ProjectReference>

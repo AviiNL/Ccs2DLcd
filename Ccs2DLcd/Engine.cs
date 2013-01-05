@@ -128,7 +128,6 @@ namespace Ccs2DLcd
             GC.Collect();
             sw.Stop();
 
-
             if (sw.Elapsed.TotalMilliseconds > 0) // division by zero protection, probably wont happen anyway
             {
               ElapsedGameTime = sw.Elapsed;

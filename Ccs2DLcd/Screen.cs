@@ -8,7 +8,7 @@ namespace Ccs2DLcd
 {
   public class Screen
   {
-    public Bitmap bitmap { get; private set; }
+    internal Bitmap bitmap { get; private set; }
     public Size Size { get; private set; }
     Graphics g;
 
@@ -28,7 +28,7 @@ namespace Ccs2DLcd
     {
       Clear(Color.DarkSlateBlue);
     }
-    
+
     public void Draw(Sprite sprite)
     {
       g.DrawImage(sprite.getBitmap().Clone(sprite.Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb), sprite.Location.toPoint());

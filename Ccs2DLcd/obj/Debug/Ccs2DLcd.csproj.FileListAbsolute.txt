@@ -1,0 +1,5 @@
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\Ccs2DLcd\bin\Debug\Ccs2DLcd.dll
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\Ccs2DLcd\bin\Debug\Ccs2DLcd.pdb
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\Ccs2DLcd\obj\Debug\Ccs2DLcd.csprojResolveAssemblyReference.cache
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\Ccs2DLcd\obj\Debug\Ccs2DLcd.dll
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\Ccs2DLcd\obj\Debug\Ccs2DLcd.pdb
