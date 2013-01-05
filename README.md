@@ -41,9 +41,9 @@ Ccs2DLcd allows you to create your very own game that can be played on the Logit
 
 ### Dependencies
 
- - CsLglcd
+ - CsLglcd<br>
  CsLglcd is a .NET wrapper for the G19 SDK
- - NAudio
+ - NAudio<br>
  NAudio is being used for.. well... audio.
 
 All third party dependencies are included in the project,<br>
