@@ -58,7 +58,7 @@ You can use a windows form, but in my experience it will stay empty anyway.
 
 Once in your project add reference to Ccs2DLcd.dll or use the project.<br>
 Build it once to create output files and copy the dll.<br>
-Navigate to <your project>\bin\Debug\ and copy the other dll's from <Ccs2DLcd>\bin\Debug\ or <Ccs2DLcd>\bin\Release\
+Navigate to [your project]\bin\Debug\ and copy the other dll's from [Ccs2DLcd]\bin\Debug\ or <Ccs2DLcd>\bin\Release\
 
 Add ' using Ccs2DLcd; ' to the top of your Program.cs (or Form1.cs if using windows forms application)<br>
 Now you are ready to make your own game.
