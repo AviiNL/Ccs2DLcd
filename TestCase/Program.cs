@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ccs2DLcd;
 using System.Drawing;
+using Ccs2DLcd;
 
 namespace TestCase
 {

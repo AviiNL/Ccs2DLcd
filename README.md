@@ -32,7 +32,36 @@ This project is an attempt to render a 2D sprite based game on your G19 Lcd Disp
 
 ## Usage
 
-todo
+Ccs2DLcd allows you to create your very own game that can be played on the Logitech G19 Keyboard LCD.
+
+### Requirements
+
+ - .NET Framework 4.0
+ - Visual Studio C# 2010 Express or above
+
+### Dependencies
+
+ - CsLglcd
+ CsLglcd is a .NET wrapper for the G19 SDK
+ - NAudio
+ NAudio is being used for.. well... audio.
+
+All third party dependencies are included in the project,<br>
+so there is no need for you to go look for them ( unless you really really want to.... you can go look them up ;) )
+
+Ccs2DLcd is compiled using Visual Studio 2010 Express for C# with the .NET Framework 4.0.<br>
+
+### Getting started
+
+To use Ccs2DLcd open Visual Studio and create a new Console Application in C#<br>
+You can use a windows form, but in my experiance it will stay empty anyway.<br><br>
+
+Once in your project add reference to Ccs2DLcd.dll or use the project.<br>
+Build it once to create output files and copy the dll.<br>
+Navigate to <your project>\bin\Debug\ and copy the other dll's from <Ccs2DLcd>\bin\Debug\ or <Ccs2DLcd>\bin\Release\<br>
+
+Add ' using Ccs2DLcd; ' to the top of your Program.cs (or Form1.cs if using windows forms application)<br>
+Now you are ready to make your own game.
 
 
 ## Copyright and License
