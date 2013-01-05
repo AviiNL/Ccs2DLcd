@@ -21,8 +21,6 @@ Project Language: C#
 License: MIT
 References:	CsLglcd - https://github.com/Fire-Dragon-DoL/CsLglcd
 			NAudio  - http://naudio.codeplex.com/
-
---------------
 </pre>
 
 # Ccs2DLcd
