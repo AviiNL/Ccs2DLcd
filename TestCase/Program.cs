@@ -45,7 +45,6 @@ namespace TestCase
       oneup.Location.X = 128;
       oneup.SetTransparent();
 
-
       sprites.Add(sphereLeft);
       sprites.Add(sphereRight);
       sprites.Add(player);
