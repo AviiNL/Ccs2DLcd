@@ -19,8 +19,11 @@ namespace Ccs2DLcd
     int row;
     int col;
 
+    private float fps;
     private bool animating = true;
     private int startFrame = -1;
+    private int endFrame = -1;
+    
 
     public Animation(string file, int cols, int rows):
       base(file)
@@ -65,7 +68,10 @@ namespace Ccs2DLcd
     public void Stop(bool reset = false)
     {
       if (reset)
-        frame = startFrame - 1;
+      {
+        frame = -1;
+        Update(fps, startFrame + 1, endFrame + 1);
+      }
       animating = false;
     }
 
@@ -80,6 +86,9 @@ namespace Ccs2DLcd
       if (frame == -1 || this.startFrame != startFrame-1)
       {
         this.startFrame = startFrame - 1;
+        if(endFrame != -1)
+          this.endFrame = endFrame - 1;
+        this.fps = fps;
         frame = startFrame - 1;
       }
       timer += (float)Engine.ElapsedGameTime.TotalSeconds;

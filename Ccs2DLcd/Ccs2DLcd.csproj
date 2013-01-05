@@ -33,14 +33,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CsLglcd">
-      <HintPath>..\..\G19 RPG\bin\Debug\CsLglcd.dll</HintPath>
-    </Reference>
-    <Reference Include="CsLglcd.UI">
-      <HintPath>..\..\G19 RPG\bin\Debug\CsLglcd.UI.dll</HintPath>
+      <HintPath>bin\Debug\CsLglcd.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NAudio">
-      <HintPath>..\..\..\..\..\Desktop\NAudio.dll</HintPath>
+      <HintPath>bin\Debug\NAudio.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

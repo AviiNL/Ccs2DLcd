@@ -132,7 +132,11 @@ namespace TestCase
       if (buttons == Buttons.Down)
         player.Start();
 
-
+      if (buttons == Buttons.Menu)
+      {
+        sphereLeft.Stop(true);
+        sphereRight.Stop(true);
+      }
 
 
       // Game Drawing
