@@ -10,6 +10,8 @@ namespace Ccs2DLcd
     public double X;
     public double Y;
 
+    private System.Drawing.Point p = new System.Drawing.Point();
+
     public Vector2(float x, float y)
     {
       this.X = x;
@@ -22,9 +24,11 @@ namespace Ccs2DLcd
       this.Y = 0;
     }
 
-    public System.Drawing.Point toPoint()
+    public System.Drawing.Point ToPoint()
     {
-      return new System.Drawing.Point((int)Math.Round(X), (int)Math.Round(Y));
+      p.X = (int)this.X;
+      p.Y = (int)this.Y;
+      return p;
     }
   }
 }

@@ -11,7 +11,7 @@ namespace Ccs2DLcd
     public Size Size { get; protected set; }
     public Vector2 Location;
     public Rectangle Rectangle;// { get; protected set; }
-    private Bitmap bitmap;
+    protected Bitmap bitmap;
 
     public Sprite(Bitmap bitmap)
     {
@@ -32,7 +32,7 @@ namespace Ccs2DLcd
       this.bitmap.MakeTransparent(color);
     }
 
-    public Bitmap getBitmap()
+    public virtual Bitmap getBitmap()
     {
       return bitmap;
     }

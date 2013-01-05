@@ -123,5 +123,11 @@ namespace Ccs2DLcd
       }
     }
 
+    public override System.Drawing.Bitmap getBitmap()
+    {
+
+      // .Clone(sprite.Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb), sprite.Location.ToPoint())
+      return bitmap.Clone(Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb);//, Location.ToPoint());
+    }
   }
 }
