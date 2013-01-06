@@ -36,7 +36,7 @@ namespace Ccs2DLcd
 
     public void Draw(Sprite sprite)
     {
-        g.DrawImage(sprite.getBitmap(), sprite.Location.ToPoint());
+        g.DrawImage(sprite.getBitmap(), sprite.Location.X, sprite.Location.Y);
     }
 
     public void DrawText(string text, int x, int y)

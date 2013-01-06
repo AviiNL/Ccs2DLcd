@@ -92,7 +92,7 @@ namespace Ccs2DLcd
         this.fps = fps;
         frame = startFrame - 1;
       }
-      timer += (float)Engine.ElapsedGameTime.TotalSeconds;
+      timer += (float)Engine.ElapsedGameTime / 1000;
 
       index = frame % (cols * rows);
       row = index / cols;
