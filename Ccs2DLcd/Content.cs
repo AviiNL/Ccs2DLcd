@@ -61,12 +61,12 @@ namespace Ccs2DLcd
 
     public void Dispose()
     {
-      foreach (var res in resources)
-      {
-        res.path = "";
-        res.obj = null;
-        res.Dispose();
-      }
+        foreach (var res in resources)
+        {
+            res.path = "";
+            res.Dispose();
+            res.obj = null;
+        }
     }
 
   }

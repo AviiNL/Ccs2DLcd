@@ -15,15 +15,17 @@ namespace Ccs2DLcd
     IWavePlayer waveOutDevice;
     WaveChannel32 mainOutputStream;
     public bool Repeat = false;
-
+    public bool IsPlaying { get; private set; }
+    string file;
     public Audio(string wavfile)
     {
+        file = wavfile;
       waveOutDevice = new WaveOut(WaveCallbackInfo.FunctionCallback());
 
       mainOutputStream = new WaveChannel32(new WaveFileReader(wavfile));
       mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
       waveOutDevice.Init(mainOutputStream);
-
+      IsPlaying = false;
     }
 
     /// <summary>
@@ -40,17 +42,20 @@ namespace Ccs2DLcd
     public void Play()
     {
       if (mainOutputStream != null)
-        mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
+          mainOutputStream.Position = mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
       
       waveOutDevice.Stop();
       waveOutDevice.Play();
+      IsPlaying = true;
 
     }
 
     public void Stop()
     {
-      waveOutDevice.Stop();
+        waveOutDevice.Stop();
+        IsPlaying = false;
     }
+    
 
     public void Update()
     {

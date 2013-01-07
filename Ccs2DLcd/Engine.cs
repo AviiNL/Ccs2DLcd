@@ -156,6 +156,8 @@ namespace Ccs2DLcd
                     lgLcd.Dispose();
                 if (screen != null)
                     screen.Dispose();
+                if (content != null)
+                    content.Dispose();
             }catch(Exception){}
         }
 
