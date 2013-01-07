@@ -36,9 +36,12 @@ namespace Ccs2DLcd
 
     public void Draw(Sprite sprite)
     {
-        g.DrawImage(sprite.getBitmap(), sprite.Location.X, sprite.Location.Y);
+        g.DrawImage(sprite.getBitmap(), sprite.Position.X, sprite.Position.Y);
     }
 
+    public void DrawRectangle(Rectangle rect, Color color){
+        g.FillRectangle(new Pen(color).Brush, rect);
+    }
     public void DrawText(string text, int x, int y)
     {
       g.DrawString(text, new Font("monospace", 12f), Brushes.White, x, y);

@@ -31,18 +31,18 @@ namespace TestCase
 
             sphereLeft = new Animation(engine.content.Load<Bitmap>("sphere.bmp"), 8, 4);
             sphereLeft.SetTransparent();
-            sphereLeft.Location.X = 64;
+            sphereLeft.Position.X = 64;
 
             sphereRight = new Animation(engine.content.Load<Bitmap>("sphere.bmp"), 8, 4);
             sphereRight.SetTransparent();
 
             player = new Animation(engine.content.Load<Bitmap>("breeze.png"), 4, 4);
             player.SetTransparent();
-            player.Location.X = (engine.screen.Size.Width / 2) - (player.Size.Width / 2);
-            player.Location.Y = (engine.screen.Size.Height / 2) - (player.Size.Height / 2);
+            player.Position.X = (engine.screen.Size.Width / 2) - (player.Size.Width / 2);
+            player.Position.Y = (engine.screen.Size.Height / 2) - (player.Size.Height / 2);
 
             oneup = new Sprite(engine.content.Load<Bitmap>("1up.png"));
-            oneup.Location.X = 128;
+            oneup.Position.X = 128;
             oneup.SetTransparent();
 
             sprites.Add(sphereLeft);
@@ -86,21 +86,21 @@ namespace TestCase
             sphereLeft.Update(28, 32, 1);
             sphereRight.Update(28);
 
-            oneup.Location.X += directionX * (float)Engine.ElapsedGameTime;
-            oneup.Location.Y += directionY * (float)Engine.ElapsedGameTime;
+            oneup.Position.X += directionX * (float)Engine.ElapsedGameTime;
+            oneup.Position.Y += directionY * (float)Engine.ElapsedGameTime;
 
-            if (oneup.Location.X + oneup.Size.Width >= 320)
+            if (oneup.Position.X + oneup.Size.Width >= 320)
             {
-                oneup.Location.X = 320 - oneup.Size.Width;
+                oneup.Position.X = 320 - oneup.Size.Width;
                 directionX = -((float)new Random().Next(1, 100)) / 100;
                 tiksound.Play();
 
                 pStart = 9;
                 pEnd = 12;
             }
-            if (oneup.Location.X <= 0)
+            if (oneup.Position.X <= 0)
             {
-                oneup.Location.X = 0;
+                oneup.Position.X = 0;
                 directionX = ((float)new Random().Next(1, 100)) / 100;
                 tiksound.Play();
 
@@ -108,18 +108,18 @@ namespace TestCase
                 pEnd = 8;
             }
 
-            if (oneup.Location.Y + oneup.Size.Height >= 240)
+            if (oneup.Position.Y + oneup.Size.Height >= 240)
             {
-                oneup.Location.Y = 240 - oneup.Size.Height;
+                oneup.Position.Y = 240 - oneup.Size.Height;
                 directionY = -((float)new Random().Next(1, 100)) / 100;
                 tiksound.Play();
 
                 pStart = 1;
                 pEnd = 4;
             }
-            if (oneup.Location.Y <= 0)
+            if (oneup.Position.Y <= 0)
             {
-                oneup.Location.Y = 0;
+                oneup.Position.Y = 0;
                 directionY = ((float)new Random().Next(1, 100)) / 100;
                 tiksound.Play();
 
