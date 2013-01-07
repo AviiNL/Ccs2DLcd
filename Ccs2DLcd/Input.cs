@@ -22,6 +22,7 @@ namespace Ccs2DLcd
         private void Device_ButtonsUp(object sender, CsLglcd.ButtonsEventArgs e)
         {
             buttons -= (Buttons)e.Buttons;
+
         }
 
 

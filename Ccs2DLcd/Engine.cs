@@ -35,8 +35,6 @@ namespace Ccs2DLcd
 
         public static double ElapsedGameTime { get; private set; }
 
-        public bool LimitFPS = false;
-
         /// <summary>
         /// Initializes Engine
         /// </summary>
@@ -62,6 +60,7 @@ namespace Ccs2DLcd
 
             Log.Write("Initializing LCD");
             lgLcd = new Lglcd();
+            
             Log.Done();
             applet = new Applet();
             QvgaDevice = new Device<QvgaImageUpdater>();
@@ -127,56 +126,16 @@ namespace Ccs2DLcd
             }
 
             sw.Stop();
-            /*
-            while (Running)
-            {
-              sw.Start();
-              if (LimitFPS)
-              {
-                ticks = Environment.TickCount;
-                if (ticks > speed)
-                {
-                  frame++;
-                  speed = 1000 / (MaxFPS + 10) + ticks;
-                  if (Update != null)
-                    Update.Invoke(this, input.buttons);
+            
+        }
 
-                  QvgaDevice.SpecializedImageUpdater.SetPixels(screen.bitmap);
-                  QvgaDevice.Update();
-                  GC.Collect();
-                  sw.Stop();
-                  if (sw.Elapsed.TotalMilliseconds > 0)
-                  {
-                    TotalGameTime += sw.Elapsed.TotalMilliseconds;
 
-                    ElapsedGameTime = sw.Elapsed;
-                    FPS = Math.Round(1000 / sw.Elapsed.TotalMilliseconds);
+        public void Stop()
+        {
+            this.Running = false;
+            Dispose();
 
-                    Console.WriteLine(frame);
-             
-                  }
-                  sw.Reset();
-                }
-              }
-              else
-              {
-                if (Update != null)
-                  Update.Invoke(this, input.buttons);
-
-                QvgaDevice.SpecializedImageUpdater.SetPixels(screen.bitmap);
-                QvgaDevice.Update();
-                GC.Collect();
-                sw.Stop();
-
-                if (sw.Elapsed.TotalMilliseconds > 0) // division by zero protection
-                {
-                  ElapsedGameTime = sw.Elapsed;
-                  FPS = Math.Round(1000 / sw.Elapsed.TotalMilliseconds);
-                }
-                sw.Reset();
-              }
-            }
-             * */
+            Environment.Exit(0);
         }
 
         /// <summary>
@@ -184,18 +143,20 @@ namespace Ccs2DLcd
         /// </summary>
         public void Dispose()
         {
-            if (applet != null)
+            try
             {
-                applet.Disconnect();
-                applet.Dispose();
-            }
-            if (QvgaDevice != null)
-                QvgaDevice.Dispose();
-            if (lgLcd != null)
-                lgLcd.Dispose();
-            if (screen != null)
-                screen.Dispose();
-
+                if (!QvgaDevice.Disposed)
+                    QvgaDevice.Dispose();
+                if (applet != null)
+                {
+                    applet.Disconnect();
+                    applet.Dispose();
+                }
+                if (lgLcd != null)
+                    lgLcd.Dispose();
+                if (screen != null)
+                    screen.Dispose();
+            }catch(Exception){}
         }
 
     }

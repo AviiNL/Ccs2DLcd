@@ -26,7 +26,6 @@ namespace TestCase
         {
             engine = new Engine();
             engine.Update += new Engine.UpdateEventHandler(engine_Update);
-            engine.LimitFPS = true;
             engine.SetName("RPG TestCase");
 
             sphereLeft = new Animation(engine.content.Load<Bitmap>("sphere.bmp"), 8, 4);
