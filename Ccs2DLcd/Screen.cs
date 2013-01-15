@@ -29,19 +29,22 @@ namespace Ccs2DLcd
       Clear(Color.DarkSlateBlue);
     }
 
-    public void Draw(Bitmap sprite, float x, float y)
+    public void Draw(Bitmap sprite, float x, float y, float width, float height)
     {
-      g.DrawImage(sprite, x, y);
+      g.DrawImage(sprite, x, y, width, height);
     }
 
     public void Draw(Sprite sprite)
     {
-        g.DrawImage(sprite.getBitmap(), sprite.Position.X, sprite.Position.Y);
+        if (sprite.getBitmap() != null)
+            g.DrawImage(sprite.getBitmap(), sprite.Position.X, sprite.Position.Y, sprite.Size.Width, sprite.Size.Height);
+        
     }
 
     public void DrawRectangle(Rectangle rect, Color color){
-        g.FillRectangle(new Pen(color).Brush, rect);
+        g.DrawRectangle(new Pen(color), rect);
     }
+
     public void DrawText(string text, int x, int y)
     {
       g.DrawString(text, new Font("monospace", 12f), Brushes.White, x, y);

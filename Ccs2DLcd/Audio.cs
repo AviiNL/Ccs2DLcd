@@ -55,18 +55,21 @@ namespace Ccs2DLcd
         waveOutDevice.Stop();
         IsPlaying = false;
     }
-    
+
 
     public void Update()
     {
-      if (mainOutputStream.Length <= mainOutputStream.Position)
-        if (Repeat)
+        if (mainOutputStream.Length <= mainOutputStream.Position)
         {
-          Play();
-        }
-        else
-        {
-          Stop();
+            if (Repeat)
+            {
+                Play();
+            }
+            else
+            {
+                if (IsPlaying)
+                    Stop();
+            }
         }
     }
 

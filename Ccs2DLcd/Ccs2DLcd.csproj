@@ -53,12 +53,14 @@
     <Compile Include="Buttons.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Input.cs" />
+    <Compile Include="Keyboard.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Sprite.cs" />
-    <Compile Include="Vector.cs" />
+    <Compile Include="Vector2.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

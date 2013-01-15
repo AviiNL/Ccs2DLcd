@@ -8,9 +8,9 @@ namespace Ccs2DLcd
 {
   public class Sprite
   {
-    public Size Size { get; protected set; }
+    public Size Size;// { get; internal set; }
     public Vector2 Position;
-    public Rectangle Rectangle;// { get; protected set; }
+    public Rectangle Rectangle;// { get; internal set; }
     protected Bitmap bitmap;
 
     public Sprite(Bitmap bitmap)

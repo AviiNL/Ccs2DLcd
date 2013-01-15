@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ccs2DLcd
 {
-    public struct Vector2// : IEquatable<Vector2>
+    public struct Vector2// : IComparable
     {
         public float X;
         public float Y;
@@ -39,6 +39,26 @@ namespace Ccs2DLcd
             return "{X=" + X + ",Y=" + Y + "}";
         }
 
+
+        public static bool operator ==(Vector2 v1, Vector2 v2)
+        {
+            return (v1.X == v2.X && v2.Y == v1.Y);
+        }
+
+        public static bool operator !=(Vector2 v1, Vector2 v2)
+        {
+            return (v1.X != v2.X || v2.Y != v1.Y);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (Vector2)obj == this;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         #region Self Operators
         public static Vector2 operator +(Vector2 v1, Vector2 v2)
         {

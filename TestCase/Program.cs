@@ -15,6 +15,8 @@ namespace TestCase
 
         static Animation player;
 
+        static Animation trimme;
+
         static Sprite oneup;
 
         static Audio tiksound;
@@ -27,7 +29,7 @@ namespace TestCase
             engine = new Engine();
             engine.Update += new Engine.UpdateEventHandler(engine_Update);
             engine.SetName("RPG TestCase");
-
+            
             sphereLeft = new Animation(engine.content.Load<Bitmap>("sphere.bmp"), 8, 4);
             sphereLeft.SetTransparent();
             sphereLeft.Position.X = 64;
@@ -35,7 +37,7 @@ namespace TestCase
             sphereRight = new Animation(engine.content.Load<Bitmap>("sphere.bmp"), 8, 4);
             sphereRight.SetTransparent();
 
-            player = new Animation(engine.content.Load<Bitmap>("breeze.png"), 4, 4);
+            player = new Animation(engine.content.Load<Bitmap>("breeze.png"), 4, 4, true);
             player.SetTransparent();
             player.Position.X = (engine.screen.Size.Width / 2) - (player.Size.Width / 2);
             player.Position.Y = (engine.screen.Size.Height / 2) - (player.Size.Height / 2);
@@ -43,16 +45,22 @@ namespace TestCase
             oneup = new Sprite(engine.content.Load<Bitmap>("1up.png"));
             oneup.Position.X = 128;
             oneup.SetTransparent();
+            
+
+            trimme = new Animation(engine.content.Load<Bitmap>("trimme.png"), 1, 1, true);
+            trimme.Position.X = 320 - 100;
+            trimme.Position.Y = 240 - 100;
 
             sprites.Add(sphereLeft);
             sprites.Add(sphereRight);
             sprites.Add(player);
             sprites.Add(oneup);
+            sprites.Add(trimme);
 
             // Map map = new Map("mapname");
 
-            // Player player = new Player("Kaiidyn"); <-- player name?
-            // player.setLocation(map.getPlayerStartLocation()) <-- still unknown, init map first?
+            //Player player = new Player("Kaiidyn"); <-- player name?
+            //player.setLocation(map.getPlayerStartLocation()) <-- still unknown, init map first?
 
             // Camera cam = new Camera();
             // cam.Follow(player);
@@ -65,6 +73,8 @@ namespace TestCase
             tiksound = engine.content.Load<Audio>("tik.wav");
             tiksound.SetVolume(75);
 
+
+
             engine.Start();
         }
 
@@ -74,14 +84,19 @@ namespace TestCase
         static int pStart = 1;
         static int pEnd = 4;
 
+        static Buttons oldButtons;
+
         static void engine_Update(object sender, Buttons buttons)
         {
             // Game logic
+            
+
+            oldButtons = buttons;
 
             bgmusic.Update(); // update needs to be called to check if the audio is done playing file (for repeating)
             // SHOULD BE HANDLED IN THE NAUDIO LIBRARY DAMNED!! >_<
-
             player.Update(4, pStart, pEnd);
+            trimme.Update(1);
             sphereLeft.Update(28, 32, 1);
             sphereRight.Update(28);
 
@@ -142,6 +157,7 @@ namespace TestCase
             engine.screen.Clear();
             sprites.ForEach(sprite => engine.screen.Draw(sprite));
             engine.screen.DrawText("FPS: " + engine.FPS.ToString(), 230, 210);
+            engine.screen.DrawText("Buttons: " + buttons.ToString());
         }
 
     }

@@ -23,34 +23,29 @@ namespace Ccs2DLcd
     private bool animating = true;
     private int startFrame = -1;
     private int endFrame = -1;
-    
 
-    public Animation(string file, int cols, int rows):
-      base(new System.Drawing.Bitmap(file))
-    {
-      this.cols = cols;
-      this.rows = rows;
-      frameWidth = getBitmap().Width / cols;
-      frameHeight = getBitmap().Height / rows;
+    private bool trim = false;
 
-      Size = new System.Drawing.Size(frameWidth, frameHeight);
-      Rectangle = new System.Drawing.Rectangle(0, 0, frameWidth, frameHeight);
-    }
+
+
     /// <summary>
     /// Initialize a bitmap for animation
     /// </summary>
     /// <param name="bitmap">use Engine.content.Load<Bitmap>(string filename)</param>
     /// <param name="cols">Amount of columns in the spritesheet</param>
     /// <param name="rows">Amount of rows in the spritesheet</param>
-    public Animation(System.Drawing.Bitmap bitmap, int cols, int rows) :
+    public Animation(System.Drawing.Bitmap bitmap, int cols, int rows, bool trim = false) :
       base(bitmap)
     {
       this.cols = cols;
       this.rows = rows;
-      frameWidth = getBitmap().Width / cols;
-      frameHeight = getBitmap().Height / rows;
+      this.trim = trim;
+
+      frameWidth = bitmap.Width / cols;
+      frameHeight = bitmap.Height / rows;
 
       Size = new System.Drawing.Size(frameWidth, frameHeight);
+      Rectangle = new System.Drawing.Rectangle(0, 0, frameWidth, frameHeight);
       Rectangle = new System.Drawing.Rectangle(0, 0, frameWidth, frameHeight);
       Update(1, 1, 1);
     }
@@ -75,6 +70,7 @@ namespace Ccs2DLcd
       }
       animating = false;
     }
+    private System.Drawing.Size oldSize;
 
     /// <summary>
     /// Updates the animation
@@ -84,6 +80,8 @@ namespace Ccs2DLcd
     /// <param name="endFrame">Frame to end the animation (default: -1) [-1 to continue to the last frame]</param>
     public void Update(float fps = 10f, int startFrame = 1, int endFrame = -1)
     {
+        if (fps < 0) fps = -fps;
+
       if (frame == -1 || this.startFrame != startFrame-1)
       {
         this.startFrame = startFrame - 1;
@@ -121,13 +119,32 @@ namespace Ccs2DLcd
           }
         }
       }
+
+
+      //if (oldSize.Height < Size.Height)
+          //Position.Y -= Size.Height - oldSize.Height;
+      //if (oldSize.Width < Size.Width)
+          //Position.X -= Size.Width - oldSize.Width;
+
+      oldSize = Size;
+
+
     }
 
     public override System.Drawing.Bitmap getBitmap()
     {
+        if (trim)
+        {
 
-      // .Clone(sprite.Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb), sprite.Location.ToPoint())
-      return bitmap.Clone(Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb);//, Location.ToPoint());
+            Size.Width = bitmap.Clone(Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb).Trim().Width;
+            Size.Height = bitmap.Clone(Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb).Trim().Height;
+
+
+            return bitmap.Clone(Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb).Trim();//, Location.ToPoint());
+            
+        }
+
+        return bitmap.Clone(Rectangle, System.Drawing.Imaging.PixelFormat.Format32bppArgb);//, Location.ToPoint());
     }
   }
 }
