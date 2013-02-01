@@ -65,15 +65,13 @@ namespace TestCase
             // Camera cam = new Camera();
             // cam.Follow(player);
 
-            bgmusic = engine.content.Load<Audio>("WahWah.wav");
+            bgmusic = engine.content.Load<Audio>("Theme4.ogg");
             bgmusic.Repeat = true;
             bgmusic.SetVolume(25);
             bgmusic.Play();
 
-            tiksound = engine.content.Load<Audio>("tik.wav");
+            tiksound = engine.content.Load<Audio>("Clock.ogg");
             tiksound.SetVolume(75);
-
-
 
             engine.Start();
         }
@@ -92,8 +90,8 @@ namespace TestCase
             
 
             oldButtons = buttons;
-
-            bgmusic.Update(); // update needs to be called to check if the audio is done playing file (for repeating)
+            tiksound.Update();
+            //bgmusic.Update(); // update needs to be called to check if the audio is done playing file (for repeating)
             // SHOULD BE HANDLED IN THE NAUDIO LIBRARY DAMNED!! >_<
             player.Update(4, pStart, pEnd);
             trimme.Update(1);

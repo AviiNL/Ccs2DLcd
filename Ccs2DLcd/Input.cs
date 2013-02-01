@@ -9,15 +9,14 @@ namespace Ccs2DLcd
     {
         //public List<Buttons> buttons{get; private set;}// = new List<Buttons>();
         public Buttons buttons { get; private set; }
-        Keyboard keyb;
 
 
         public Input(CsLglcd.Device Device)
         {
             //buttons = new List<Buttons>();
-            keyb = new Keyboard();
+            /*keyb = new Keyboard();
             keyb.KeyDown += new Keyboard.KeyDownEventHandler(keyb_KeyDown);
-            keyb.KeyUp += new Keyboard.KeyUpEventHandler(keyb_KeyUp);
+            keyb.KeyUp += new Keyboard.KeyUpEventHandler(keyb_KeyUp);*/
             Device.ButtonsDown += new EventHandler<CsLglcd.ButtonsEventArgs>(Device_ButtonsDown);
             Device.ButtonsUp += new EventHandler<CsLglcd.ButtonsEventArgs>(Device_ButtonsUp);
 

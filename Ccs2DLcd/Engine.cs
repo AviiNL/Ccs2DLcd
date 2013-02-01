@@ -82,6 +82,7 @@ namespace Ccs2DLcd
         public void SetName(string name)
         {
             applet.Title = name;
+            Console.Title = name;
         }
 
         /// <summary>

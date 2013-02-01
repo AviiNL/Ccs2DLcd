@@ -6,78 +6,145 @@ using System.Media;
 using System.Runtime.InteropServices;
 using NAudio;
 using NAudio.Wave;
+using NAudio.Ogg;
+
 using System.Threading;
 
 namespace Ccs2DLcd
 {
-  public class Audio
-  {
-    IWavePlayer waveOutDevice;
-    WaveChannel32 mainOutputStream;
-    public bool Repeat = false;
-    public bool IsPlaying { get; private set; }
-    string file;
-    public Audio(string wavfile)
+    public class Audio
     {
-        file = wavfile;
-      waveOutDevice = new WaveOut(WaveCallbackInfo.FunctionCallback());
-
-      mainOutputStream = new WaveChannel32(new WaveFileReader(wavfile));
-      mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
-      waveOutDevice.Init(mainOutputStream);
-      IsPlaying = false;
-    }
-
-    /// <summary>
-    /// Set the volume of audio object
-    /// </summary>
-    /// <param name="Volume">Volume between 1 and 100</param>
-    public void SetVolume(int Volume)
-    {
-      if (mainOutputStream != null)
-        mainOutputStream.Volume = (float)Volume / 100;
-      
-    }
-
-    public void Play()
-    {
-      if (mainOutputStream != null)
-          mainOutputStream.Position = mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
-      
-      waveOutDevice.Stop();
-      waveOutDevice.Play();
-      IsPlaying = true;
-
-    }
-
-    public void Stop()
-    {
-        waveOutDevice.Stop();
-        IsPlaying = false;
-    }
-
-
-    public void Update()
-    {
-        if (mainOutputStream.Length <= mainOutputStream.Position)
+        IWavePlayer waveOutDevice;
+        WaveStream mainOutputStream;
+        public bool Repeat = false;
+        public bool IsPlaying { get; private set; }
+        string fileName;
+        int Volume;
+        public Audio(string fileName)
         {
+            this.fileName = fileName;
+            if (!System.IO.File.Exists(fileName)) throw new System.IO.FileNotFoundException();
+            try
+            {
+                waveOutDevice = new DirectSoundOut(50);
+            }
+            catch (Exception driverCreateException)
+            {
+                Console.WriteLine(String.Format("{0}", driverCreateException.Message));
+                return;
+            }
+            
+
+            mainOutputStream = CreateInputStream(fileName);
+            try
+            {
+                waveOutDevice.Init(mainOutputStream);
+            }
+            catch (Exception initException)
+            {
+                Console.WriteLine(String.Format("{0}", initException.Message), "Error Initializing Output");
+                return;
+            }
+            waveOutDevice.PlaybackStopped += waveOutDevice_PlaybackStopped;
+            IsPlaying = false;
+        }
+
+        void waveOutDevice_PlaybackStopped(object sender, EventArgs e)
+        {
+            IsPlaying = false;
             if (Repeat)
             {
                 Play();
             }
-            else
+        }
+
+        /// <summary>
+        /// Set the volume of audio object
+        /// </summary>
+        /// <param name="Volume">Volume between 1 and 100</param>
+        public void SetVolume(int Volume)
+        {
+            this.Volume = Volume;
+
+            if (mainOutputStream != null)
+                (mainOutputStream as WaveChannel32).Volume = (float)Volume / 100;
+
+        }
+
+        public void Play()
+        {
+            waveOutDevice.Stop();
+            mainOutputStream.Dispose();
+            mainOutputStream = CreateInputStream(fileName);
+            waveOutDevice.Init(mainOutputStream);
+            (mainOutputStream as WaveChannel32).Volume = (float)Volume / 100;
+            waveOutDevice.Play();
+            IsPlaying = true;
+        }
+
+        public void Stop()
+        {
+
+            waveOutDevice.Stop();
+            mainOutputStream.Position = mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
+            IsPlaying = false;
+        }
+
+
+        public void Update()
+        {
+            if (mainOutputStream.CurrentTime >= mainOutputStream.TotalTime)
             {
-                if (IsPlaying)
-                    Stop();
+                Stop();
+                IsPlaying = false;
             }
         }
-    }
 
-    public void Dispose()
-    {
-      mainOutputStream.Dispose();
-      waveOutDevice.Dispose();
-    }
+        public void Dispose()
+        {
+            mainOutputStream.Dispose();
+            waveOutDevice.Dispose();
+        }
 
-  }
+
+
+        private static WaveStream CreateInputStream(string fileName)
+        {
+            WaveChannel32 inputStream;
+            if (fileName.EndsWith(".wav"))
+            {
+                WaveStream readerStream = new WaveFileReader(fileName);
+                if (readerStream.WaveFormat.Encoding != WaveFormatEncoding.Pcm)
+                {
+                    readerStream = WaveFormatConversionStream.CreatePcmStream(readerStream);
+                    readerStream = new BlockAlignReductionStream(readerStream);
+                }
+                if (readerStream.WaveFormat.BitsPerSample != 16)
+                {
+                    var format = new WaveFormat(readerStream.WaveFormat.SampleRate,
+                       16, readerStream.WaveFormat.Channels);
+                    readerStream = new WaveFormatConversionStream(format, readerStream);
+                }
+                inputStream = new WaveChannel32(readerStream);
+            }
+            else if (fileName.EndsWith(".ogg"))
+            {
+
+                WaveStream readerStream = new OggFileReader(fileName);
+                if (readerStream.WaveFormat.BitsPerSample != 16)
+                {
+                    var format = new WaveFormat(readerStream.WaveFormat.SampleRate,
+                       16, readerStream.WaveFormat.Channels);
+                    readerStream = new WaveFormatConversionStream(format, readerStream);
+                }
+                inputStream = new WaveChannel32(readerStream);
+            }
+            else
+            {
+                throw new InvalidOperationException("Unsupported extension");
+            }
+            return inputStream;
+        }
+
+    }
 }
