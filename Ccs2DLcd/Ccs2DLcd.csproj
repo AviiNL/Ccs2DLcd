@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="Audio.cs" />
+    <Compile Include="_Audio.cs" />
     <Compile Include="Buttons.cs" />
     <Compile Include="Content.cs" />
     <Compile Include="Engine.cs" />

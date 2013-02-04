@@ -2,110 +2,91 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Media;
-using System.Runtime.InteropServices;
 using NAudio;
 using NAudio.Wave;
 using NAudio.Ogg;
-
 using System.Threading;
 
 namespace Ccs2DLcd
 {
     public class Audio
     {
+        public Boolean Repeat { get; set; }
+        public Boolean isPlaying { get; internal set; }
+        public float Volume
+        {
+            get
+            {
+                return ((mainOutputStream as WaveChannel32).Volume * 100);
+            }
+            set
+            {
+                (mainOutputStream as WaveChannel32).Volume = value / 100;
+            }
+        }
+
         IWavePlayer waveOutDevice;
         WaveStream mainOutputStream;
-        public bool Repeat = false;
-        public bool IsPlaying { get; private set; }
-        string fileName;
-        int Volume;
-        public Audio(string fileName)
+        String fileName;
+
+        public Audio(string filename)
         {
-            this.fileName = fileName;
-            if (!System.IO.File.Exists(fileName)) throw new System.IO.FileNotFoundException();
-            try
-            {
-                waveOutDevice = new DirectSoundOut(50);
-            }
-            catch (Exception driverCreateException)
-            {
-                Console.WriteLine(String.Format("{0}", driverCreateException.Message));
-                return;
-            }
-            
-
-            mainOutputStream = CreateInputStream(fileName);
-            try
-            {
-                waveOutDevice.Init(mainOutputStream);
-            }
-            catch (Exception initException)
-            {
-                Console.WriteLine(String.Format("{0}", initException.Message), "Error Initializing Output");
-                return;
-            }
-            waveOutDevice.PlaybackStopped += waveOutDevice_PlaybackStopped;
-            IsPlaying = false;
-        }
-
-        void waveOutDevice_PlaybackStopped(object sender, EventArgs e)
-        {
-            IsPlaying = false;
-            if (Repeat)
-            {
-                Play();
-            }
-        }
-
-        /// <summary>
-        /// Set the volume of audio object
-        /// </summary>
-        /// <param name="Volume">Volume between 1 and 100</param>
-        public void SetVolume(int Volume)
-        {
-            this.Volume = Volume;
-
-            if (mainOutputStream != null)
-                (mainOutputStream as WaveChannel32).Volume = (float)Volume / 100;
-
+            this.fileName = filename;
+            waveOutDevice = new DirectSoundOut(50);
+            mainOutputStream = CreateInputStream(filename);
+            waveOutDevice.Init(mainOutputStream);
+            isPlaying = false;
         }
 
         public void Play()
         {
-            waveOutDevice.Stop();
-            mainOutputStream.Dispose();
-            mainOutputStream = CreateInputStream(fileName);
-            waveOutDevice.Init(mainOutputStream);
-            (mainOutputStream as WaveChannel32).Volume = (float)Volume / 100;
-            waveOutDevice.Play();
-            IsPlaying = true;
-        }
-
-        public void Stop()
-        {
-
-            waveOutDevice.Stop();
-            mainOutputStream.Position = mainOutputStream.Seek(0, System.IO.SeekOrigin.Begin);
-            IsPlaying = false;
-        }
-
-
-        public void Update()
-        {
-            if (mainOutputStream.CurrentTime >= mainOutputStream.TotalTime)
+            Reset();
+            if (!isPlaying)
             {
-                Stop();
-                IsPlaying = false;
+                isPlaying = true;
+                waveOutDevice.Play();
+                new Thread(new ThreadStart(counter)).Start();
             }
+        }
+
+        public void Pause()
+        {
+            if (isPlaying)
+            {
+                isPlaying = false;
+                waveOutDevice.Stop();
+            }
+        }
+
+        public void Reset()
+        {
+            mainOutputStream.Position = 0;
+
+        }
+
+        private void counter()
+        {
+            while (isPlaying)
+            {
+                Thread.Sleep(50);
+                if (mainOutputStream.Position >= mainOutputStream.Length)
+                {
+                    isPlaying = false;
+                }
+            }
+            if (Repeat)
+                Play();
+
         }
 
         public void Dispose()
         {
-            mainOutputStream.Dispose();
-            waveOutDevice.Dispose();
-        }
+            if (mainOutputStream != null)
+                mainOutputStream.Dispose();
 
+            if (waveOutDevice != null)
+                waveOutDevice.Dispose();
+        }
 
 
         private static WaveStream CreateInputStream(string fileName)

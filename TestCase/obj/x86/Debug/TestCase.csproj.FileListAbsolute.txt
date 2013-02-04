@@ -7,15 +7,6 @@ C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debu
 C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\NAudio.dll
 C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\Ccs2DLcd.dll
 C:\Users\Yme-Jan\documents\visual studio 2010\Projects\CC2DLcd\TestCase\bin\Debug\Ccs2DLcd.pdb
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\TestCase.exe
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\TestCase.pdb
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\Ccs2DLcd.dll
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\CsLglcd.dll
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\NAudio.dll
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\Ccs2DLcd.pdb
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.csprojResolveAssemblyReference.cache
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.exe
-C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.pdb
 F:\Shared\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.exe
 F:\Shared\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.pdb
 F:\Shared\Ccs2DLcd\TestCase\bin\Debug\TestCase.exe
@@ -29,3 +20,13 @@ F:\Shared\Ccs2DLcd\TestCase\bin\Debug\NAudio.pdb
 F:\Shared\Ccs2DLcd\TestCase\bin\Debug\NAudio.xml
 F:\Shared\Ccs2DLcd\TestCase\bin\Debug\NAudio.Ogg.dll
 F:\Shared\Ccs2DLcd\TestCase\bin\Debug\NAudio.Ogg.pdb
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\TestCase.exe
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\TestCase.pdb
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\Ccs2DLcd.dll
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\NAudio.dll
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\CsLglcd.dll
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\NAudio.Ogg.dll
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\bin\Debug\Ccs2DLcd.pdb
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.csprojResolveAssemblyReference.cache
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.exe
+C:\Users\Yme-Jan\Documents\GitHub\Ccs2DLcd\TestCase\obj\x86\Debug\TestCase.pdb

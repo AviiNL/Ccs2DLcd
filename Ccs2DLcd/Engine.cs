@@ -102,6 +102,7 @@ namespace Ccs2DLcd
             }
             catch (Exception)
             {
+                Dispose();
                 Log.Failed();
             }
 

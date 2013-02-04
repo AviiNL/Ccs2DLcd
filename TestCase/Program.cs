@@ -46,7 +46,6 @@ namespace TestCase
             oneup.Position.X = 128;
             oneup.SetTransparent();
             
-
             trimme = new Animation(engine.content.Load<Bitmap>("trimme.png"), 1, 1, true);
             trimme.Position.X = 320 - 100;
             trimme.Position.Y = 240 - 100;
@@ -57,22 +56,14 @@ namespace TestCase
             sprites.Add(oneup);
             sprites.Add(trimme);
 
-            // Map map = new Map("mapname");
-
-            //Player player = new Player("Kaiidyn"); <-- player name?
-            //player.setLocation(map.getPlayerStartLocation()) <-- still unknown, init map first?
-
-            // Camera cam = new Camera();
-            // cam.Follow(player);
-
             bgmusic = engine.content.Load<Audio>("Theme4.ogg");
             bgmusic.Repeat = true;
-            bgmusic.SetVolume(25);
+            bgmusic.Volume = 25;
             bgmusic.Play();
 
-            tiksound = engine.content.Load<Audio>("Clock.ogg");
-            tiksound.SetVolume(75);
-
+            tiksound = engine.content.Load<Audio>("tik.wav");
+            tiksound.Volume = 75;
+            //tiksound.Play();
             engine.Start();
         }
 
@@ -90,9 +81,6 @@ namespace TestCase
             
 
             oldButtons = buttons;
-            tiksound.Update();
-            //bgmusic.Update(); // update needs to be called to check if the audio is done playing file (for repeating)
-            // SHOULD BE HANDLED IN THE NAUDIO LIBRARY DAMNED!! >_<
             player.Update(4, pStart, pEnd);
             trimme.Update(1);
             sphereLeft.Update(28, 32, 1);
@@ -129,6 +117,7 @@ namespace TestCase
                 pStart = 1;
                 pEnd = 4;
             }
+
             if (oneup.Position.Y <= 0)
             {
                 oneup.Position.Y = 0;
@@ -149,7 +138,6 @@ namespace TestCase
                 sphereLeft.Stop(true);
                 sphereRight.Stop(true);
             }
-
 
             // Game Drawing
             engine.screen.Clear();

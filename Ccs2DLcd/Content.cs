@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -38,25 +39,29 @@ namespace Ccs2DLcd
     /// <returns></returns>
     public T Load<T>(string file)
     {
-      if (resources.Where(x => x.path == Environment.CurrentDirectory + ResourcePath + "\\" + file).ToList().Count() == 0)
-      {
-        Log.Write("Loading [" + System.IO.Path.GetFileName(Environment.CurrentDirectory + ResourcePath + "\\" + file) + "]");
+        if (resources.Where(x => x.path == Environment.CurrentDirectory + ResourcePath + "\\" + file).ToList().Count() == 0)
+        {
+            if (!File.Exists(Environment.CurrentDirectory + ResourcePath + "\\" + file))
+                throw new FileNotFoundException(file);
 
-        
-        object instance = (object)Activator.CreateInstance(typeof(T), new object[] { Environment.CurrentDirectory + ResourcePath + "\\" + file });
+            Log.Write("Loading [" + System.IO.Path.GetFileName(Environment.CurrentDirectory + ResourcePath + "\\" + file) + "]");
 
-        Resource res = new Resource();
-        res.path = Environment.CurrentDirectory + ResourcePath + "\\" + file;
-        res.obj = (T)Convert.ChangeType(instance, typeof(T));
-        resources.Add(res);
 
-        Log.Done();
-        return (T)Convert.ChangeType(instance, typeof(T));
-      }
-      else
-      {
-        return (T)Convert.ChangeType(resources.Where(x => x.path == Environment.CurrentDirectory + ResourcePath + "\\" + file).ToList()[0].obj, typeof(T));
-      }
+            object instance = (object)Activator.CreateInstance(typeof(T), new object[] { Environment.CurrentDirectory + ResourcePath + "\\" + file });
+
+            Resource res = new Resource();
+            res.path = Environment.CurrentDirectory + ResourcePath + "\\" + file;
+            res.obj = (T)Convert.ChangeType(instance, typeof(T));
+            resources.Add(res);
+
+            Log.Done();
+            return (T)Convert.ChangeType(instance, typeof(T));
+
+        }
+        else
+        {
+            return (T)Convert.ChangeType(resources.Where(x => x.path == Environment.CurrentDirectory + ResourcePath + "\\" + file).ToList()[0].obj, typeof(T));
+        }
     }
 
     public void Dispose()
